@@ -6,7 +6,23 @@ let swiper = new Swiper('.slider', {
     },
     direction: 'vertical',
     parallax: true,
-    freeMode: true
+    // freeMode: true,
+    forceToAxis: true,
+    touchReleaseOnEdges:true,
+})
+
+let swiper_inner = new Swiper('.second-info-block', {
+    speed: 1500,
+    mousewheel: {
+        enabled: true,
+        sensitivity: 2.5
+    },
+    forceToAxis: true,
+    touchReleaseOnEdges:true,
+    direction: 'horizontal',
+
+    // freeMode: true,
+    nested: true
 })
 
 swiper.on('reachBeginning', function(){
@@ -18,7 +34,7 @@ const logo = document.querySelector('.logo');
 const first_drops = document.querySelector('.first-drops')
 
 swiper.on('progress', function(){
-    console.log('changed');
+    // console.log('changed');
     if(!swiper.isBeginning){
         // console.log('beginning');
         // console.log(header);
@@ -27,6 +43,21 @@ swiper.on('progress', function(){
         first_drops.style = 'margin-left: 5%;'
         // header.style = 'width: 80%';
         // header.style = 'top: 3%';
+
+
+        // console.log(swiper.activeIndex);
+        // let active_index = swiper.realIndex;
+        // if (active_index == 3){
+        //     console.log('444');
+        //     // swiper.slideTo(3, 500);
+        //     swiper_inner.enabled = true;
+        // } else {
+        //     swiper_inner.enabled = false;
+        // }
+        // // const slide_3 = swiper.slides[2];
+        // // // console.log(slide_3);
+        // // console.log(swiper.progres);
+
     
     } else {
         
@@ -37,6 +68,29 @@ swiper.on('progress', function(){
 
     }
 })
+
+
+// const allowScroll = (swiper: SwiperEvent) => {
+//     var activeIndex = swiper.activeIndex;
+//     var activeSlide = swiper.slides[activeIndex];
+//     var { scrollHeight, clientHeight } = activeSlide;
+//     const diff = scrollHeight - clientHeight;
+//     if (diff > 0) {
+//       const findScroll = (e) => {
+//         const scrollUp = e.deltaY < 0;
+//         if (scrollUp && activeSlide.scrollTop === 0) {
+//           swiper.mousewheel.enable();
+//           activeSlide.removeEventListener("wheel", findScroll);
+//         } else if (!scrollUp && activeSlide.scrollTop === diff) {
+//           swiper.mousewheel.enable();
+//           activeSlide.scrollTop = 0;
+//           activeSlide.removeEventListener("wheel", findScroll);
+//         }
+//       };
+//       activeSlide.addEventListener("wheel", findScroll);
+//       swiper.mousewheel.disable();
+//     }
+//   };
 
 // const first_block = document.querySelector('.first-block');
 // first_block.onmouseover(function(){
